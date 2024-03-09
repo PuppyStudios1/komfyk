@@ -21,6 +21,6 @@ On what hardware does it run?
 The konfyk Kernel is designed to run on standard 32-bit and 64-bit architectures that support a paged memory management unit (PMMU).
 
 How to contribute?
-Contributions to the konfyk Kernel are welcome. Please send your contributions as patches to the maintainer email address listed below.
+Contributions to the konfyk Kernel are welcome. Please send your contributions as patches to the maintainer email address listed below, or push to the repo
 
 Maintainer: Aaha3.sh@gmail.com

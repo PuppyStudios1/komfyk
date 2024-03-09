@@ -31,6 +31,7 @@ int kerel_main () {
     const char *green = "\033[0;32m";
     const char *white = "\033[0;37m";
     const char *reset = "\033[0m";
+    const char *red = "\033[0;31m";
 
     // Use the syscall function to invoke a system call by its number
     // For example, 1 is the system call number for write on Linux
@@ -79,7 +80,7 @@ int kerel_main () {
     // For example, create a TCP socket using the IPv4 protocol
     int sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd == -1) {
-        // Socket creation failed
+        printf("%s[ FAILED ]%s Loading sockfd system call\n", red, white)
         perror("socket");
         exit(1);
     }
@@ -91,7 +92,7 @@ int kerel_main () {
     addr.sin_addr.s_addr = INADDR_ANY;
     addr.sin_port = htons(8080);
     if (bind(sockfd, (struct sockaddr *)&addr, sizeof(addr)) == -1) {
-        // Bind failed
+        printf("%s[ FAILED ]%s Loading bind system call\n", red, white")
         perror("bind");
         exit(1);
     }
@@ -99,7 +100,7 @@ int kerel_main () {
     // Use the listen system call to mark the socket as passive
     // For example, allow up to 10 pending connections
     if (listen(sockfd, 10) == -1) {
-        // Listen failed
+        "%s[ FAILED ]%s Loading sockfd system call as passive\n", red, white
         perror("listen");
         exit(1);
     }
@@ -110,12 +111,12 @@ int kerel_main () {
     socklen_t client_len = sizeof(client_addr);
     int connfd = accept(sockfd, (struct sockaddr *)&client_addr, &client_len);
     if (connfd == -1) {
-        // Accept failed
+        "%s[ FAILED ]%s Loading accept system call\n", red, white
         perror("accept");
         exit(1);
     }
     // Print the client's IP address and port
-    printf("Connected to %s:%d\n", inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
+    printf("[-] Connected to %s:%d\n", inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
 
     // Use the send and recv system calls to exchange data with the client
     // For example, send a welcome message and echo back whatever the client sends
@@ -134,24 +135,24 @@ int kerel_main () {
         // Echo back the data
         n = send(connfd, buffer, n, 0);
         if (n == -1) {
-            // Send failed
+            "%s[ FAILED ]%s Loading send data\n", red, white
             perror("send");
             exit(1);
         }
     }
     if (n == -1) {
-        // Receive failed
+        "%s[ FAILED ]%s Receiving send data\n", red, white
         perror("recv");
         exit(1);
     }
-    // Close the connection
+    printf("[-] closed connection\n")
     close(connfd);
 
     // Use the brk and sbrk system calls to change the location of the program break
     // For example, allocate 4096 bytes of memory using sbrk
     void *ptr = sbrk(4096);
     if (ptr == (void *)-1) {
-        // Allocation failed
+        /"%s[ FAILED ]%s Loading sbrk system call\n", red, white
         perror("sbrk");
         exit(1);
     }
@@ -160,7 +161,7 @@ int kerel_main () {
     printf("[",KGRN,"%sOK\n",KWHT"]","Data at %p: %s\n", ptr, (char *)ptr);
     // Deallocate the memory using brk
     if (brk(ptr) == -1) {
-        // Deallocation failed
+        /"%s[ FAILED ]%s Loading brk system call\n", red, white
         perror("brk");
         exit(1);
     }
@@ -169,14 +170,14 @@ int kerel_main () {
     // For example, map the /etc/passwd file into memory
     int fd = open("/etc/passwd", O_RDONLY);
     if (fd == -1) {
-        // Open failed
+        "%s[ FAILED ]%s Open failed\n", red, white
         perror("open");
         exit(1);
     }
     // Get the file size
     struct stat st;
     if (fstat(fd, &st) == -1) {
-        // Stat failed
+        "%s[ FAILED ]%s Loading fstat failed\n", red, white
         perror("fstat");
         exit(1);
     }
@@ -184,7 +185,7 @@ int kerel_main () {
     // Map the file into memory
     char *data = mmap(NULL, size, PROT_READ, MAP_PRIVATE, fd, 0);
     if (data == MAP_FAILED) {
-        // Map failed
+        "%s[ FAILED ]%s Loading mmap failed\n", red, white
         perror("mmap");
         exit(1);
     }
@@ -192,18 +193,18 @@ int kerel_main () {
     printf("[-] File contents:\n%s\n", data);
     // Unmap the file from memory
     if (munmap(data, size) == -1) {
-        // Unmap failed
+        "%s[ FAILED ]%s Loading unmap failed\n", red, white
         perror("munmap");
         exit(1);
     }
-    // Close the file
+    printf("[-] file closed")
     close(fd);
 
     // Use the mprotect system call to change the protection of memory pages
     // For example, change the protection of the first page of the program to read-only
     void *page = (void *)((unsigned long)main & ~(getpagesize() - 1)); // Get the page address of main
     if (mprotect(page, getpagesize(), PROT_READ) == -1) {
-        // Protect failed
+        "%s[ FAILED ]%s Loading mprotect\n", red, white
         perror("mprotect");
         exit(1);
     }

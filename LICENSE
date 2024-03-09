@@ -1,0 +1,25 @@
+Komfyk Development and Distribution License (KDDL)
+
+This is the license document for the komfyk Kernel Project.
+
+What is the konfyk Kernel?
+The konfyk Kernel Project is a custom operating system kernel developed by the community of github(core kernel by Aaha3). It is designed to be efficient, modular, and compatible with various hardware architectures.
+
+License Terms:
+The konfy Kernel is provided under the following terms:
+
+- Redistribution and use in source and binary forms, with or without modification, are permitted.
+- Source code redistributions must retain this license document.
+- Binary redistributions must reproduce this license document in the documentation and/or other materials provided with the distribution.
+- Neither the name of the Kernel Project nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+Disclaimer:
+THIS KERNEL IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE KERNEL OR THE USE OR OTHER DEALINGS IN THE KERNEL.
+
+On what hardware does it run?
+The konfyk Kernel is designed to run on standard 32-bit and 64-bit architectures that support a paged memory management unit (PMMU).
+
+How to contribute?
+Contributions to the konfyk Kernel are welcome. Please send your contributions as patches to the maintainer email address listed below.
+
+Maintainer: Aaha3.sh@gmail.com

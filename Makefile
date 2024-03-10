@@ -22,7 +22,7 @@ endif
 # Makefile that includes a menuconfig target
 
 # Path to the Kconfig file
-KCONFIG := Kconfig
+KCONFIG := ./Kconfig
 
 # Command to run menuconfig
 MENUCONFIG := mconf

@@ -1,0 +1,5 @@
+config BUILD_KERNEL_64_BIT
+    bool "Build kernel"
+    default n
+    help
+      Select this option if you want to build the kernel, and then run `make -k`

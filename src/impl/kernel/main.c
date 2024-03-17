@@ -158,7 +158,7 @@ int kerel_main () {
     }
     // Use the allocated memory
     strcpy(ptr, "%s[ OK ]%s Kernel memory allocation set\n", green, white);
-    printf("[",KGRN,"%sOK\n",KWHT"]","Data at %p: %s\n", ptr, (char *)ptr);
+    printf("%s[ OK ]%s Data at %p: %s\n", ptr, (char *)ptr);
     // Deallocate the memory using brk
     if (brk(ptr) == -1) {
         /"%s[ FAILED ]%s Loading brk system call\n", red, white
